@@ -63,16 +63,27 @@ h1 {
   text-align: center;
   margin-top: 10.4rem;
 
+  &.rotated {
+    [data-pasition="back"] {
+      transform: rotateX(0) !important;
+    }
+
+    [data-pasition="front"] {
+      transform: rotateX(-180deg) !important;
+    }
+  }
+
   .countdown-item {
     width: var(--card-size);
-    background-color: var(--background-color-dark);
   }
 
   .countdown-value {
     margin-bottom: 1.6rem;
     border-radius: 0.8rem;
     height: calc(var(--card-size) + 1rem);
+    background-color: var(--background-color-dark);
     position: relative;
+    perspective: 100rem;
   }
 
   .countdown-label {
@@ -93,11 +104,14 @@ h1 {
     overflow: hidden;
     position: absolute;
     line-height: 100%;
+    transition: all 0.5s ease-in;
+    backface-visibility: hidden;
 
-    &[data-pasition="back"] {
+    &[data-pasition="top"] {
       top: 0;
       border-radius: 0.8rem;
       corner-shape: round round scoop scoop;
+      filter: brightness(0.8);
 
       span {
         position: absolute;
@@ -106,10 +120,28 @@ h1 {
       }
     }
 
-    &[data-pasition="top"] {
+    &[data-pasition="back"] {
+      top: calc(var(--card-size) / 2);
+      border-radius: 0.8rem;
+      corner-shape: scoop scoop round round;
+      transform: rotateX(180deg);
+      transform-origin: top center;
+      box-shadow: 0 2px 2px rgb(0 0 0 / 0.25);
+
+      span {
+        position: absolute;
+        top: 0;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    &[data-pasition="front"] {
       top: 0;
       border-radius: 0.8rem;
       corner-shape: round round scoop scoop;
+      filter: brightness(0.8);
+      transform-origin: bottom center;
+      box-shadow: 0 -2px 2px rgb(0 0 0 / 0.25);
 
       span {
         position: absolute;
