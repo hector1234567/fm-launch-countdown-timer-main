@@ -59,26 +59,26 @@ function updateValue(item, value, max) {
 
   if (current === null) {
     console.log("first time");
-    item.querySelector("[data-pasition='back'] span").textContent = value
+    item.querySelector("[data-position='back'] span").textContent = value
       ? value - 1
       : max;
-    item.querySelector("[data-pasition='front'] span").textContent = value;
-    item.querySelector("[data-pasition='top'] span").textContent = value
+    item.querySelector("[data-position='front'] span").textContent = value;
+    item.querySelector("[data-position='top'] span").textContent = value
       ? value - 1
       : max;
-    item.querySelector("[data-pasition='down'] span").textContent = value;
+    item.querySelector("[data-position='down'] span").textContent = value;
     item.setAttribute("data-current", value);
   } else if (current != value) {
     item.classList.add("rotated");
     setTimeout(() => {
-      item.querySelector("[data-pasition='back'] span").textContent = value
+      item.querySelector("[data-position='back'] span").textContent = value
         ? value - 1
         : max;
-      item.querySelector("[data-pasition='front'] span").textContent = value;
-      item.querySelector("[data-pasition='top'] span").textContent = value
+      item.querySelector("[data-position='front'] span").textContent = value;
+      item.querySelector("[data-position='top'] span").textContent = value
         ? value - 1
         : max;
-      item.querySelector("[data-pasition='down'] span").textContent = value;
+      item.querySelector("[data-position='down'] span").textContent = value;
 
       item.classList.remove("rotated");
       item.setAttribute("data-current", value);

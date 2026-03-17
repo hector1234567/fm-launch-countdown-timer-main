@@ -1,11 +1,11 @@
 @font-face {
   font-family: "Red Hat Text";
-  src: locale("Red Hat Text"), url("./font/static/RedHatText-Regular.ttf");
+  src: local("Red Hat Text"), url("./font/static/RedHatText-Regular.ttf");
 }
 
 @font-face {
   font-family: "Red Hat Text";
-  src: locale("Red Hat Text"), url("./font/static/RedHatText-Bold.ttf");
+  src: local("Red Hat Text"), url("./font/static/RedHatText-Bold.ttf");
   font-weight: bold;
 }
 
@@ -34,6 +34,7 @@
   --container-background-light-color: hsl(236, 21%, 26%);
   --container-background-dark-color: hsl(236, 21%, 26%);
   --text-light-color: hsl(237, 18%, 59%);
+  --tab-shadow: 0 2px 2px rgb(0 0 0 / 0.25);
 
   --tab-animation-duration: 700ms;
 }
@@ -57,7 +58,7 @@ html {
 }
 
 body {
-  font-family: "Red Hat Text";
+  font-family: "Red Hat Text", sans-serif;
   background-image: url("./images/bg-stars.svg"),
     linear-gradient(
       to bottom,
@@ -98,14 +99,14 @@ h1 {
     width: var(--card-size);
 
     &.rotated {
-      [data-pasition="back"] {
+      [data-position="back"] {
         animation-name: tabBack;
         animation-duration: var(--tab-animation-duration);
         animation-timing-function: ease-in;
         animation-fill-mode: both;
       }
 
-      [data-pasition="front"] {
+      [data-position="front"] {
         animation-name: tabFront;
         animation-duration: var(--tab-animation-duration);
         animation-timing-function: ease-in;
@@ -141,11 +142,10 @@ h1 {
     overflow: hidden;
     position: absolute;
     line-height: 100%;
-    transition: all 0.5s ease-in;
     backface-visibility: hidden;
     border-radius: 0.8rem;
 
-    &[data-pasition="top"] {
+    &[data-position="top"] {
       top: 0;
       corner-shape: round round scoop scoop;
       filter: brightness(0.8);
@@ -157,12 +157,12 @@ h1 {
       }
     }
 
-    &[data-pasition="back"] {
+    &[data-position="back"] {
       top: calc(var(--card-size) / 2);
       corner-shape: scoop scoop round round;
       transform: rotateX(180deg);
       transform-origin: top center;
-      box-shadow: 0 2px 2px rgb(0 0 0 / 0.25);
+      box-shadow: var(--tab-shadow);
 
       span {
         position: absolute;
@@ -171,7 +171,7 @@ h1 {
       }
     }
 
-    &[data-pasition="front"] {
+    &[data-position="front"] {
       top: 0;
       corner-shape: round round scoop scoop;
       filter: brightness(0.8);
@@ -185,7 +185,7 @@ h1 {
       }
     }
 
-    &[data-pasition="down"] {
+    &[data-position="down"] {
       top: calc(var(--card-size) / 2);
       corner-shape: scoop scoop round round;
 
