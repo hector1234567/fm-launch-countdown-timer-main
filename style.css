@@ -98,7 +98,7 @@ h1 {
   .countdown-item {
     width: var(--card-size);
 
-    &.rotated {
+    .rotated {
       [data-position="back"] {
         animation-name: tabBack;
         animation-duration: var(--tab-animation-duration);
