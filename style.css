@@ -9,6 +9,24 @@
   font-weight: bold;
 }
 
+@keyframes tabFront {
+  0% {
+    transform: rotateX(0);
+  }
+  100% {
+    transform: rotateX(-180deg);
+  }
+}
+
+@keyframes tabBack {
+  0% {
+    transform: rotateX(180deg);
+  }
+  100% {
+    transform: rotateX(0);
+  }
+}
+
 :root {
   --primary-color: hsl(0, 100%, 67%);
   --background-color-dark: hsl(235, 16%, 14%);
@@ -16,6 +34,8 @@
   --container-background-light-color: hsl(236, 21%, 26%);
   --container-background-dark-color: hsl(236, 21%, 26%);
   --text-light-color: hsl(237, 18%, 59%);
+
+  --tab-animation-duration: 700ms;
 }
 
 * {
@@ -26,6 +46,14 @@
 
 html {
   font-size: 62.5%;
+
+  @media (width < 345px) {
+    font-size: 50%;
+  }
+
+  @media (width < 286px) {
+    font-size: 40%;
+  }
 }
 
 body {
@@ -49,11 +77,13 @@ body {
 
 h1 {
   margin-top: 13.2rem;
+  margin-inline: 2rem;
   color: white;
   font-size: 2.2rem;
   font-weight: bold;
   letter-spacing: 0.75rem;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .countdown {
@@ -62,19 +92,26 @@ h1 {
   gap: 3.2rem;
   text-align: center;
   margin-top: 10.4rem;
-
-  &.rotated {
-    [data-pasition="back"] {
-      transform: rotateX(0) !important;
-    }
-
-    [data-pasition="front"] {
-      transform: rotateX(-180deg) !important;
-    }
-  }
+  margin-inline: 2rem;
 
   .countdown-item {
     width: var(--card-size);
+
+    &.rotated {
+      [data-pasition="back"] {
+        animation-name: tabBack;
+        animation-duration: var(--tab-animation-duration);
+        animation-timing-function: ease-in;
+        animation-fill-mode: both;
+      }
+
+      [data-pasition="front"] {
+        animation-name: tabFront;
+        animation-duration: var(--tab-animation-duration);
+        animation-timing-function: ease-in;
+        animation-fill-mode: both;
+      }
+    }
   }
 
   .countdown-value {
@@ -83,7 +120,7 @@ h1 {
     height: calc(var(--card-size) + 1rem);
     background-color: var(--background-color-dark);
     position: relative;
-    perspective: 100rem;
+    perspective: 36rem;
   }
 
   .countdown-label {
@@ -106,10 +143,10 @@ h1 {
     line-height: 100%;
     transition: all 0.5s ease-in;
     backface-visibility: hidden;
+    border-radius: 0.8rem;
 
     &[data-pasition="top"] {
       top: 0;
-      border-radius: 0.8rem;
       corner-shape: round round scoop scoop;
       filter: brightness(0.8);
 
@@ -122,7 +159,6 @@ h1 {
 
     &[data-pasition="back"] {
       top: calc(var(--card-size) / 2);
-      border-radius: 0.8rem;
       corner-shape: scoop scoop round round;
       transform: rotateX(180deg);
       transform-origin: top center;
@@ -137,7 +173,6 @@ h1 {
 
     &[data-pasition="front"] {
       top: 0;
-      border-radius: 0.8rem;
       corner-shape: round round scoop scoop;
       filter: brightness(0.8);
       transform-origin: bottom center;
@@ -152,7 +187,6 @@ h1 {
 
     &[data-pasition="down"] {
       top: calc(var(--card-size) / 2);
-      border-radius: 0.8rem;
       corner-shape: scoop scoop round round;
 
       span {
@@ -185,5 +219,35 @@ footer {
 
   a:hover {
     filter: brightness(0.8);
+  }
+}
+
+@media (width < 740px) {
+  h1 {
+    margin-top: 14.2rem;
+    font-size: 1.8rem;
+  }
+
+  .countdown {
+    --card-size: 7rem;
+    gap: 1.6rem;
+    margin-top: 5.4rem;
+
+    .countdown-tab {
+      font-size: 3.6rem;
+      border-radius: 0.4rem;
+    }
+
+    .countdown-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.296rem;
+    }
+  }
+
+  footer {
+    margin-top: auto;
+    padding-top: 7rem;
+    height: 15rem;
+    background-position: top right;
   }
 }
