@@ -57,7 +57,18 @@ function updateCountdown() {
 function updateValue(item, value, max) {
   var current = item.getAttribute("data-current");
 
-  if (current != value) {
+  if (current === null) {
+    console.log("first time");
+    item.querySelector("[data-pasition='back'] span").textContent = value
+      ? value - 1
+      : max;
+    item.querySelector("[data-pasition='front'] span").textContent = value;
+    item.querySelector("[data-pasition='top'] span").textContent = value
+      ? value - 1
+      : max;
+    item.querySelector("[data-pasition='down'] span").textContent = value;
+    item.setAttribute("data-current", value);
+  } else if (current != value) {
     item.classList.add("rotated");
     setTimeout(() => {
       item.querySelector("[data-pasition='back'] span").textContent = value
