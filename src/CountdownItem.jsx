@@ -11,7 +11,6 @@ const CountdownItem = ({ value, label }) => {
       setPastValue(value);
     }, 900);
   }, [value]);
-
   return (
     <div className="countdown-item">
       <div className={currentValue != pastValue ? "rotated" : ""}>
