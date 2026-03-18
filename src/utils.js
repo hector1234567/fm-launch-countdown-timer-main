@@ -16,7 +16,7 @@ export function getDiffTime(initDate) {
 
   if (diffMs < 0) {
     localStorage.removeItem("initDate");
-    return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    return null;
   }
 
   const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));

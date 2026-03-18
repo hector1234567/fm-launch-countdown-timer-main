@@ -11,7 +11,12 @@ const App = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCountdown(getDiffTime(initDate.current));
+      const diffTime = getDiffTime(initDate.current);
+      if (diffTime) {
+        setCountdown(diffTime);
+      } else {
+        clearInterval(interval);
+      }
     }, 1000);
 
     return () => clearInterval(interval);
