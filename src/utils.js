@@ -1,5 +1,4 @@
-//const TIMER_START = 9 * 24 * 60 * 60 * 1000; // 9 days in milliseconds
-const TIMER_START = 10 * 1000; // 10 seconds in milliseconds
+const TIMER_START = 9 * 24 * 60 * 60 * 1000; // 9 days in milliseconds
 
 export function getInitialDate() {
   if (localStorage.getItem("initDate")) {
