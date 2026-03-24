@@ -90,6 +90,7 @@ h1 {
 .countdown {
   --card-size: 14.8rem;
   display: flex;
+  justify-content: center;
   gap: 3.2rem;
   text-align: center;
   margin-top: 10.4rem;
